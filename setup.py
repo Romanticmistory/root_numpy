@@ -35,6 +35,11 @@ libnumpyhist = Extension('root_numpy._libnumpyhist',
     extra_compile_args = [],
     extra_link_args=[] + root_ldflags)
 
+libinnerjoin = Extension('root_numpy._libinnerjoin',
+    sources=['root_numpy/src/_libinnerjoin.cpp'],
+    include_dirs=[np.get_include(), 'root_numpy'],
+    extra_compile_args = [],
+    extra_link_args=[])
 
 execfile('root_numpy/info.py')
 
@@ -51,7 +56,7 @@ setup(
     packages=['root_numpy','root_numpy.tests'],
     package_data={
         'root_numpy': ['tests/data/*.root']},
-    ext_modules=[librootnumpy, libnumpyhist],
+    ext_modules=[librootnumpy, libnumpyhist, libinnerjoin],
     classifiers=[
         "Programming Language :: Python",
         "Topic :: Utilities",
